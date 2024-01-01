@@ -14,6 +14,7 @@ exports.getRandom = async (req, res) => {
     const rand = Math.floor(Math.random() * count);
     const emp = await Employee.findOne().populate('department').skip(rand);
     if (!emp) res.status(404).json({ message: 'Not found' });
+    else res.json(emp);
   } catch (err) {
     res.status(500).json({ message: err });
   }
